@@ -1,0 +1,23 @@
+{
+  "name": "influence_backend",
+  "version": "1.0.0",
+  "description": "Backend RESTFUL API for Influence",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Movinggun/Influence.git"
+  },
+  "keywords": [
+    "REST",
+    "API"
+  ],
+  "author": "Jamie Lamb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Movinggun/Influence/issues"
+  },
+  "homepage": "https://github.com/Movinggun/Influence#readme"
+}
