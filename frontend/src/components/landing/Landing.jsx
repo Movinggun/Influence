@@ -94,7 +94,7 @@ const Landing = ({ auth, loadUser, setLoginModal, setSignupModal, logout, getTer
 
 //history.push('/dashboard')
     return (
-        <div>
+        <div style={{backgroundColor: '#13161D', height: '100%', backgroundSize: 'cover' }}>
               <Box className="Header">
                 <Box display="flex" mt={2}>
                     <Box flexGrow={1}>

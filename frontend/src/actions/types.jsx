@@ -24,3 +24,8 @@ export const TERM_ADDED = 'TERM_ADDED'
 export const TERM_FAIL = 'TERM_FAIL'
 export const TERM_GET = 'TERM_GET'
 export const SET_TERM_TEXT = 'SET_TERM_TEXT'
+
+
+//INFLUENCERS
+export const GET_INFLUENCERS = 'GET_INFLUENCERS'
+export const GET_INFLUENCERS_ERROR = 'GET_INFLUENCERS_ERROR'

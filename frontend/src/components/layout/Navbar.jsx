@@ -66,14 +66,14 @@ const Navbar = ({auth, logout}) => {
         <div className={classes.root}>
         <AppBar style={{ backgroundColor: '#13151D', height: "60px", marginBottom: '10px'}} position="static">
           <Toolbar>
-              <img style={{height: "30px", verticalAlign: 'middle', marginLeft:'11%',  marginRight:'1%', cursor: 'pointer'}}  onClick={() => history.push('/') } src="/images/influence_Logo.png" alt="logo"/>
+              <img style={{height: "30px", verticalAlign: 'middle', marginLeft:'12%',  marginRight:'1%', cursor: 'pointer'}}  onClick={() => history.push('/') } src="/images/influence_Logo.png" alt="logo"/>
               <Typography type="items" color="inherit" style={{ flex: 1 }}>
                 <Button color="inherit" onClick={() => history.push('/dashboard') }>Dashboard</Button>
                 <Button color="inherit" onClick={() => history.push('/influencers') } >Influencers</Button>
                 <Button color="inherit">Service Providers</Button>
                 <Button color="inherit">Conversations</Button>
             </Typography>
-            <Box style={{marginRight: '11%'}}>
+            <Box style={{marginRight: '12%'}}>
                 {auth.user !== null && !auth.loading && <>
                  <img onClick={handleProfileClick} style={{cursor:'pointer', borderRadius:'50%', width:'40px', height:'40px', marginRight:'10px', textAlign: 'center', verticalAlign: 'middle'}} src="/images/dansgaming.png" alt=""/>
                  <Menu classes={{ paper: classes.menuPaper }} id="simple-menu" anchorEl={anchorEl}  getContentAnchorEl={null} anchorOrigin={{ vertical: "bottom", horizontal: "center" }} transformOrigin={{ vertical: "top", horizontal: "center" }}  keepMounted open={Boolean(anchorEl)} onClose={handleProfileClose}>
