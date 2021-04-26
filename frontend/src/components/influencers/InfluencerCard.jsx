@@ -1,0 +1,55 @@
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Box from '@material-ui/core/Box';
+import {Typography} from "@material-ui/core";
+import Input from '@material-ui/core/Input';
+import SocialChip from './SocialChip'
+import Button from "@material-ui/core/Button";
+
+const InfluencerCard = ({  }) => {
+
+
+    return (
+        <Card style={{backgroundColor: '#13151D', height: '100%'}}>
+            <CardMedia component="img" alt="Influencer Image" height="169" image="/images/waffle.svg" title=""/>
+            <CardContent style={{paddingBottom: '10px'}}>
+            <Box style={{ float: "right"}}>
+                <Typography style={{fontSize: '14px'}}> 4.8
+                    <img style={{width: 18, paddingLeft: 5}} src="/icons/icon-star.svg" alt="Novo Star Icon"/>
+              </Typography>
+            </Box>
+
+            <Box style={{ float: "left"}}>
+                <img style={{ borderRadius:'50%', width:'40px', height:'40px', marginRight:'10px', textAlign: 'center'}} src="/images/waffle_avatar.svg" alt=""/>
+                <Typography style={{float: "right", fontSize: '18px', lineHeight: '1.0'}}><b>Giantwaffle</b>
+                    <img style={{width: 12, paddingLeft: 5}} src="/icons/icon-verified.svg" alt="Verified User"/>
+                    <br /> <span style={{color: '#F9E7AA', fontSize: '13px', lineHeight: '1.0'}}>Level 4 Influencer</span>
+                </Typography>
+                <br />
+                <Box style={{display: 'flex'}}>
+                    <SocialChip label="Twitch"  />
+                    <SocialChip label="Twitter"  />
+                </Box>
+            </Box>
+            <br /> <br /> <br /> <br />
+            <Box  style={{ float: "left"}}>
+                <Typography style={{ color: '#BAC1D9', fontSize: '14px', marginTop: '10px'}}>
+                     From simulators to action adventures, i play videogames on Twitch.
+                </Typography>
+            </Box>
+            <br/><br /> <br />
+            <Box>
+                <Typography style={{float: "right", color: '#BAC1D9', fontSize: '14px', marginTop: '10px'}}>
+                    Starting at $250/hr
+                </Typography>
+            </Box>
+            <Button variant={"contained"} style={{background: 'linear-gradient(to right, #F9E9AD , #FACD7F)', width: '100%'}} >Message </Button>
+       
+            </CardContent>
+        </Card>
+    )
+}
+
+export default InfluencerCard

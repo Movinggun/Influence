@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb+srv://headless:ChickenWing1@influence.bfuhc.mongodb.net/Influence?retryWrites=true&w=majority",
+    "jwtSalt": "KFCSOLUTIONS69420",
+    "port": 5000
+}
