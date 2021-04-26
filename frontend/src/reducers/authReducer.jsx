@@ -1,4 +1,4 @@
-import  { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, SET_LOADING, SET_LOGIN_MODAL, SET_SIGNUP_MODAL} from '../actions/types';
+import  { SAVE_BRANCH, SET_ACCOUNT_BRANCH, REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, SET_LOADING, SET_LOGIN_MODAL, SET_SIGNUP_MODAL, SET_BRANCH_MODAL} from '../actions/types';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -6,6 +6,8 @@ const initialState = {
     loading: false,
     setLoginModal: false,
     setSignupModal: false,
+    branchModalState: false,
+    selectedAccountBranch: 'influencer',
     user: null,
     error: null
 }
@@ -32,6 +34,11 @@ export default (state = initialState, action) => {
                 isAuthenticated: true,
                 loading: false
             }
+        case SAVE_BRANCH:
+            return {
+                ...state,
+                branchModalState: false
+            }
         case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token);
             return {
@@ -45,17 +52,26 @@ export default (state = initialState, action) => {
                 ...state,
                 setSignupModal: !state.setSignupModal
             }     
+        case SET_BRANCH_MODAL:
+            return {
+                ...state,
+                branchModalState: action.payload
+            }   
         case SET_LOGIN_MODAL:
             return {
                 ...state,
                 setLoginModal: !state.setLoginModal
-            }   
+            }  
+        case SET_ACCOUNT_BRANCH:
+            return {
+                ...state,
+                selectedAccountBranch: action.payload
+            }        
         case AUTH_ERROR:
         case REGISTER_FAIL:
         case LOGIN_FAIL:
         case LOGOUT:
             localStorage.removeItem('token');
-            console.error(action.payload);
             return {
                 ...state,
                 token: null,

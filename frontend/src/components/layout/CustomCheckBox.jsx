@@ -1,10 +1,10 @@
 
 const CustomCheckBox = ( { label, onClick } ) => {
     return (
-        <label class="check-container">
+        <label className="check-container">
             {label}
             <input type="checkbox"/>
-            <span class="checkmark"></span>
+            <span className="checkmark"></span>
         </label>
     )
 }

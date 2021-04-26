@@ -7,7 +7,7 @@ const SocialChip = ( { label, onClick } ) => {
             label={label}
             name={label}
             onClick={onClick}
-            style={{backgroundColor: '#474F61', color: '#BAC1D9',  borderRadius: 5, pointerEvents: 'auto', height: '25px', width: '25px;', fontSize: '11px'}}
+            style={{backgroundColor: '#474F61', color: '#BAC1D9',  borderRadius: 5, pointerEvents: 'auto', height: '25px', fontSize: '11px'}}
             />
         </Box>
     )

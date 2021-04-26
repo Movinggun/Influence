@@ -3,6 +3,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Influencers from './components/influencers/Influencers'
 import Landing from './components/landing/Landing';
 import Login from './components/login/Login';
+import BranchModal from './components/onboarding/BranchModal';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 import { Provider } from 'react-redux';
@@ -38,7 +39,8 @@ function App() {
             borderBottom: `0px`,
           }
         }
-    }
+    },
+    
   }
 })
 
@@ -46,6 +48,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
       <Router>
+      <BranchModal />
           <div className="container">
               <Route path='/' exact component={Landing}/>
               <PrivateRoute path='/dashboard'  component={Dashboard}/>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import SetAuthToken from '../utils/setAuthToken';
-import  { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, SET_LOADING, SET_LOGIN_MODAL, SET_SIGNUP_MODAL} from './types';
+import  { SAVE_BRANCH, SET_ACCOUNT_BRANCH, REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, SET_LOADING, SET_LOGIN_MODAL, SET_SIGNUP_MODAL, SET_BRANCH_MODAL} from './types';
 
 
 // Load User
@@ -16,7 +16,7 @@ export const loadUser = () => async dispatch => {
     } catch (err) {
         dispatch({
             type: AUTH_ERROR,
-            payload: err.response.data
+            payload: err.response
         })   
     }
 }
@@ -71,13 +71,48 @@ export const register = (formData) => async dispatch => {
 }
 
 
-// Sets the Modal Statew
+
+    // Savr Branch
+    export const saveBranch = (branch) => async dispatch => {
+    
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    
+        try {
+            const res = await axios.put('/api/users/branch', branch, config);
+    
+            dispatch({
+                type: SAVE_BRANCH,
+                payload: res.data
+            });
+    
+            loadUser()
+        } catch (err) {
+            dispatch({
+                type: AUTH_ERROR,
+                payload: err.response.data.msg
+            }); 
+        }
+    }
+
+
+// Sets the Modal State
 export const setLoginModal = () => {
     return {
         type: SET_LOGIN_MODAL
     }
 }
 
+// Sets the Modal State
+export const setBranchModal = (state) => {
+    return {
+        type: SET_BRANCH_MODAL,
+        payload: state
+    }
+}
 
 // Sets the Modal Statew
 export const setSignupModal = () => {
@@ -85,6 +120,15 @@ export const setSignupModal = () => {
         type: SET_SIGNUP_MODAL
     }
 }
+
+// Set Account Branch
+export const setAccountBranch = (branch) => {
+    return {
+        type: SET_ACCOUNT_BRANCH,
+        payload: branch
+    }
+}
+
 
 // Set Loading To True
 export const setLoading  = () => {

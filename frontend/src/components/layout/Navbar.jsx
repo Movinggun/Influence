@@ -66,10 +66,10 @@ const Navbar = ({auth, logout}) => {
         <div className={classes.root}>
         <AppBar style={{ backgroundColor: '#13151D', height: "60px", marginBottom: '10px'}} position="static">
           <Toolbar>
-              <img style={{height: "30px", verticalAlign: 'middle', marginLeft:'11%',  marginRight:'1%'}} src="/images/influence_Logo.png" alt="logo"/>
+              <img style={{height: "30px", verticalAlign: 'middle', marginLeft:'11%',  marginRight:'1%', cursor: 'pointer'}}  onClick={() => history.push('/') } src="/images/influence_Logo.png" alt="logo"/>
               <Typography type="items" color="inherit" style={{ flex: 1 }}>
-                <Button color="inherit">Dashboard</Button>
-                <Button color="inherit"  onClick={() => history.push('/influencers') } >Influencers</Button>
+                <Button color="inherit" onClick={() => history.push('/dashboard') }>Dashboard</Button>
+                <Button color="inherit" onClick={() => history.push('/influencers') } >Influencers</Button>
                 <Button color="inherit">Service Providers</Button>
                 <Button color="inherit">Conversations</Button>
             </Typography>

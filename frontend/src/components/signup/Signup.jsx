@@ -10,9 +10,10 @@ import LandingButton from "../landing/LandingButton";
 import { setSignupModal, register, loadUser, clearErrors } from '../../actions/authActions';
 import { setAlert } from '../../actions/alertActions';
 import { connect } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 const Signup = ( {auth, setSignupModal, register, setAlert, clearErrors} ) =>{
-
+  const history = useHistory();
   const [user, setUser] = useState({email: '', password: '', password2: '', diplay_name: '', first_name: '', last_name: '', dob: ''});
   const { email, password, password2, display_name, first_name, last_name, dob} = user;
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value})
@@ -27,6 +28,7 @@ const Signup = ( {auth, setSignupModal, register, setAlert, clearErrors} ) =>{
             console.log("hi");
             setAlert('You have logged in!', 'Success', "success", 1500)
             setSignupModal();
+            history.push('/dashboard')
         }
     }
     // eslint-disable-next-line
