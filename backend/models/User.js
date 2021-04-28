@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
         max: 20,
         min: 2
     },
+    avatar: {
+        type: String,
+        required: false,
+        max: 200,
+        min: 2
+    },
     password: {
         type: String,
         required: true,

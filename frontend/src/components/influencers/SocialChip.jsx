@@ -2,7 +2,7 @@ import Chip from '@material-ui/core/Chip';
 import {Box} from "@material-ui/core";
 const SocialChip = ( { label, onClick } ) => {
     return (
-        <Box style={{pointerEvents: 'none'}} mr={1} mt={1} >
+        <Box style={{pointerEvents: 'none'}} mr={1}  >
             <Chip
             label={label}
             name={label}

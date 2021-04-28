@@ -14,6 +14,11 @@ const Dashboard = () => {
             <Navbar />
             <Box mr={30} ml={30}>
                  <h1 style={{color: 'white'}}>Dashboard</h1>
+                 <img src="api/users/avatar/" alt="shiiit"/>
+                 <form action="api/users/avatar" method="post" enctype="multipart/form-data">
+                 <input type="file" name="avatar" />
+                 <input type="submit" value="gg"/>
+                 </form>
             </Box>
         </div>
     )

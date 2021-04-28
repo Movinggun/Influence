@@ -75,9 +75,9 @@ const Navbar = ({auth, logout}) => {
             </Typography>
             <Box style={{marginRight: '12%'}}>
                 {auth.user !== null && !auth.loading && <>
-                 <img onClick={handleProfileClick} style={{cursor:'pointer', borderRadius:'50%', width:'40px', height:'40px', marginRight:'10px', textAlign: 'center', verticalAlign: 'middle'}} src="/images/dansgaming.png" alt=""/>
+                 <img onClick={handleProfileClick} style={{cursor:'pointer', borderRadius:'50%', width:'40px', height:'40px', marginRight:'10px', textAlign: 'center', verticalAlign: 'middle'}} src={'/api/users/avatar/' + auth.user._id} alt=""/>
                  <Menu classes={{ paper: classes.menuPaper }} id="simple-menu" anchorEl={anchorEl}  getContentAnchorEl={null} anchorOrigin={{ vertical: "bottom", horizontal: "center" }} transformOrigin={{ vertical: "top", horizontal: "center" }}  keepMounted open={Boolean(anchorEl)} onClose={handleProfileClose}>
-                        <MenuItem classes={{ root: classes.menuItemTop }}   onClick={handleProfileClose}> <img style={{ borderRadius:'50%', width:'30px', height:'30px', marginRight:'10px'}} src="/images/dansgaming.png" alt=""/><span style={{color: 'white'}}>{auth.user.display_name}</span> <br/></MenuItem>
+                        <MenuItem classes={{ root: classes.menuItemTop }}   onClick={handleProfileClose}> <img style={{ borderRadius:'50%', width:'30px', height:'30px', marginRight:'10px'}} src={'/api/users/avatar/' + auth.user._id} alt=""/><span style={{color: 'white'}}>{auth.user.display_name}</span> <br/></MenuItem>
                         <hr style={{marginLeft:15, marginRight:15, border: '0', height:'1px', background: '#2D3445'}}/>
                         <MenuItem classes={{ root: classes.menuItem }}   onClick={() => history.push('/dashboard') }>Profile</MenuItem>
                         <MenuItem classes={{ root: classes.menuItem }}  onClick={handleProfileClose}>My account</MenuItem>

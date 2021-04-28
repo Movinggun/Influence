@@ -101,13 +101,13 @@ const Landing = ({ auth, loadUser, setLoginModal, setSignupModal, logout, getTer
                         <img height="40" src="/images/Influence_Logo.png" alt="Influence Logo" />
                     </Box>
                     <Box mr={2}>
-                        {auth.isAuthenticated ? <img onClick={handleProfileClick} style={{cursor:'pointer', borderRadius:'50%', width:'40px', height:'40px', marginRight:'10px', textAlign: 'center'}} src="/images/dansgaming.png" alt=""/> : 
+                        {auth.isAuthenticated ? <img onClick={handleProfileClick} style={{cursor:'pointer', borderRadius:'50%', width:'40px', height:'40px', marginRight:'10px', textAlign: 'center'}}  src={'/api/users/avatar/' + auth.user._id} alt=""/> : 
                         <Button style={{color: "white"}} onClick={setLoginModal}> {"Sign In"}</Button>
                          }
                 
                    {auth.isAuthenticated && 
                    <Menu classes={{ paper: classes.menuPaper }} id="simple-menu" anchorEl={anchorEl}  getContentAnchorEl={null} anchorOrigin={{ vertical: "bottom", horizontal: "center" }} transformOrigin={{ vertical: "top", horizontal: "center" }}  keepMounted open={Boolean(anchorEl)} onClose={handleProfileClose}>
-                        <MenuItem classes={{ root: classes.menuItemTop }}   onClick={handleProfileClose}> <img style={{ borderRadius:'50%', width:'30px', height:'30px', marginRight:'10px'}} src="/images/dansgaming.png" alt=""/><span style={{color: 'white'}}>{auth.user.display_name}</span> <br/></MenuItem>
+                        <MenuItem classes={{ root: classes.menuItemTop }}   onClick={handleProfileClose}> <img style={{ borderRadius:'50%', width:'30px', height:'30px', marginRight:'10px'}}  src={'/api/users/avatar/' + auth.user._id} alt=""/><span style={{color: 'white'}}>{auth.user.display_name}</span> <br/></MenuItem>
                         <hr style={{marginLeft:15, marginRight:15, border: '0', height:'1px', background: '#2D3445'}}/>
                         <MenuItem classes={{ root: classes.menuItem }}   onClick={() => history.push('/dashboard') }>Profile</MenuItem>
                         <MenuItem classes={{ root: classes.menuItem }}  onClick={handleProfileClose}>My account</MenuItem>

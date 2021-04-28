@@ -9,7 +9,7 @@ import FilterBar from './Filterbar'
 import InfluencerCard from './InfluencerCard'
 import { loadInfluencers } from '../../actions/influencerActions' 
 
-const Influencers = ({influencer, loadInfluencers}) => {
+const Influencers = ({influencer, loadInfluencers, auth}) => {
 
     useEffect(() => {
             loadInfluencers();
@@ -32,10 +32,10 @@ const Influencers = ({influencer, loadInfluencers}) => {
                     <Box style={{float: 'right', color: 'white', marginTop: '25px'}}>Sort by <strong> Highest Rating <img src="/images/down_arrow.svg" alt=""/></strong></Box>
                     <Box style={{color: 'white',  marginTop: '25px'}}>{ influencers !== null && influencers.length} Influencers Available</Box>
                     <Box mb={1} style={{color: '#BAC1D9', fontSize: '12px',  marginTop: '3px'}}>Clear all filters</Box>
-                    <Grid container spacing={5}  direction="row" justify="flex-start" alignItems="flex-start">
+                    <Grid container spacing={4}  direction="row" justify="flex-start" alignItems="flex-start">
                         { influencers !== null && influencers.map(i => (
                             <Grid key={i._id} item xs={9} lg={4} xl={4}>
-                                <InfluencerCard displayName={i.user_info[0].display_name} level={i.level} verified={i.verified} description={i.card_description} rating={i.rating} price={i.starting_payment} socials={i.social_media}/>
+                                <InfluencerCard displayName={i.user_info[0].display_name} level={i.level} verified={i.verified} description={i.card_description} rating={i.rating} price={i.starting_payment} socials={i.social_media} avatar={'/api/users/avatar/' + i.user}/>
                             </Grid>
                         ))}
   
