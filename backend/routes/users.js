@@ -53,7 +53,7 @@ router.put('/branch', [
 router.post('/avatar', upload.single('avatar'), auth, async(req, res, next) => {
 
     await User.findOneAndUpdate({ _id: req.user.id }, {avatar: `/uploads/${req.file.filename}`}, async (err, result) => {
-        if (err) return res.status(400).json({msg: 'Failed to set account type'});
+        if (err) return res.status(400).json({msg: 'Failed to upload image'});
         else {
             return res.status(200).json({msg: 'Image Uploaded'});
         } 

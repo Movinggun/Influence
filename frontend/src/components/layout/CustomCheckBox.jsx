@@ -1,12 +1,20 @@
 
-const CustomCheckBox = ( { label, onClick } ) => {
+import { connect } from 'react-redux';
+
+const CustomCheckBox = ( { label, onChange, influencer, name } ) => {
+
     return (
         <label className="check-container">
             {label}
-            <input type="checkbox"/>
+            <input  onChange={onChange} name={name} type="checkbox" checked={influencer.filters[label]}/>
             <span className="checkmark"></span>
         </label>
     )
 }
 
-export default CustomCheckBox
+const mapStateToProps = (state) => ({
+    influencer: state.influencer
+});
+
+
+export default connect(mapStateToProps) (CustomCheckBox)

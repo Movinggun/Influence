@@ -43,6 +43,12 @@ const influencerSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: "$5"
-    }
+    },
+    banner: {
+        type: String,
+        required: false,
+        max: 200,
+        min: 2
+    },
 });
 module.exports = mongoose.model('Influencer', influencerSchema);

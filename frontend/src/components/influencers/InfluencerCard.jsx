@@ -8,12 +8,13 @@ import Input from '@material-ui/core/Input';
 import SocialChip from './SocialChip'
 import Button from "@material-ui/core/Button";
 
-const InfluencerCard = ({ displayName, level, verified, description, rating, price, socials, avatar }) => {
+
+const InfluencerCard = ({ displayName, level, verified, description, rating, price, socials, avatar, banner }) => {
 
 
     return (
         <Card style={{backgroundColor: '#13151D', height: '100%'}}>
-            <CardMedia component="img" alt="Influencer Image" height="169" image="/images/waffle.svg" title=""/>
+            <CardMedia component="img" alt="Influencer Image" height="169" image={banner} title=""/>
             <CardContent style={{paddingBottom: '10px'}}>
             <Box style={{ float: "right"}}>
                 <Typography style={{fontSize: '14px'}}> {rating}.0
@@ -34,7 +35,7 @@ const InfluencerCard = ({ displayName, level, verified, description, rating, pri
             <Box style={{ float: "left"}}>
                 <Box style={{display: 'flex'}}>
                     {socials.map(i => (
-                        <SocialChip label={i}  />
+                        <SocialChip key={i} label={i}  />
                         ))}
                 </Box>
                 </Box>
@@ -57,5 +58,8 @@ const InfluencerCard = ({ displayName, level, verified, description, rating, pri
         </Card>
     )
 }
+
+
+
 
 export default InfluencerCard
