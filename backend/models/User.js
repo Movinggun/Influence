@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema({
       enum: ['influencer','brand', 'service_provider', 'none'],
       default: 'none'
     },
+    account_type_info: {
+        type: Array,
+        default: {}
+      },
     date: {
         type: Date,
         required: true,

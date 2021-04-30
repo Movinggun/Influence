@@ -36,10 +36,9 @@ const InfluencerCard = ({ displayName, level, verified, description, rating, pri
                 <Box style={{display: 'flex'}}>
                     {socials.map(i => (
                         <SocialChip key={i} label={i}  />
-                        ))}
+                    ))}
                 </Box>
-                </Box>
-           
+                </Box>  
             <br /> 
             <Box  style={{ float: "left"}}>
                 <Typography style={{ color: '#BAC1D9', fontSize: '14px', marginTop: '10px'}}>

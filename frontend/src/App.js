@@ -27,6 +27,11 @@ function App() {
       fontWeightMedium: 500
      },
     overrides: {
+      MuiCardContentRoot: {
+        '&:lastChild': {
+          paddingBottom: '0px' 
+        }
+      },
       MuiInput: {
         underline: {
           '&:before': { //undedrline color when textfield is inactive

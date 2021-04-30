@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { loadUser, setLoginModal, setSignupModal, logout} from '../../actions/authActions';
 import { getTerms , setSearchText } from '../../actions/searchActions';
+import { setDashboardSubPage } from '../../actions/dashboardActions'
 
 import Box from '@material-ui/core/Box';
 import LandingButton from "./LandingButton";
@@ -44,7 +45,7 @@ export const useStyles = makeStyles((theme) => ({
   }));
   
 
-const Landing = ({ auth, loadUser, setLoginModal, setSignupModal, logout, getTerms, search,  setSearchText }) => {
+const Landing = ({ auth, loadUser, setLoginModal, setSignupModal, logout, getTerms, search,  setSearchText, setDashboardSubPage }) => {
     const history = useHistory();
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -109,7 +110,7 @@ const Landing = ({ auth, loadUser, setLoginModal, setSignupModal, logout, getTer
                    <Menu classes={{ paper: classes.menuPaper }} id="simple-menu" anchorEl={anchorEl}  getContentAnchorEl={null} anchorOrigin={{ vertical: "bottom", horizontal: "center" }} transformOrigin={{ vertical: "top", horizontal: "center" }}  keepMounted open={Boolean(anchorEl)} onClose={handleProfileClose}>
                         <MenuItem classes={{ root: classes.menuItemTop }}   onClick={handleProfileClose}> <img style={{ borderRadius:'50%', width:'30px', height:'30px', marginRight:'10px'}}  src={'/api/users/avatar/' + auth.user._id} alt=""/><span style={{color: 'white'}}>{auth.user.display_name}</span> <br/></MenuItem>
                         <hr style={{marginLeft:15, marginRight:15, border: '0', height:'1px', background: '#2D3445'}}/>
-                        <MenuItem classes={{ root: classes.menuItem }}   onClick={() => history.push('/dashboard') }>Profile</MenuItem>
+                        <MenuItem classes={{ root: classes.menuItem }}   onClick={() => {setDashboardSubPage(1); history.push('/dashboard')}  }>Profile</MenuItem>
                         <MenuItem classes={{ root: classes.menuItem }}  onClick={handleProfileClose}>My account</MenuItem>
                         <MenuItem classes={{ root: classes.menuItemIcon }}  onClick={doLogout}> <img style={{marginRight: '10px'}} src="/images/logout.svg" alt=""/> Logout</MenuItem>
                     </Menu>}
@@ -202,4 +203,4 @@ const mapStateToProps = (state) => ({
     search: state.search 
 });
 
-export default connect(mapStateToProps, {loadUser, setLoginModal, logout, setSignupModal, getTerms, setSearchText})(Landing);
+export default connect(mapStateToProps, {loadUser, setLoginModal, logout, setSignupModal, getTerms, setSearchText, setDashboardSubPage})(Landing);

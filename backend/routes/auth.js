@@ -6,11 +6,24 @@ const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
+const Influencer = require('../models/Influencer');
 
 router.get('/', auth, async (req, res) => {
     try {
-        const user = await User.findById(req.user.id).select('-password');
-        res.json(user);
+        const getUser = await User.findById(req.user.id).select('-password');
+        switch (getUser.account_type) {
+            case "influencer":
+                const influencer = await Influencer.find({user: req.user.id}).select('-user_info').select('-__v').select('-user');
+                console.log(influencer)
+                getUser['account_type_info'] = influencer;
+                return res.json(getUser);
+                
+            case "brand":
+                break;    
+            case 'service_provider':
+                break;    
+        }
+        res.json(getUser);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
