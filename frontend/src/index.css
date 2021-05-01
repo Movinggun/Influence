@@ -10,6 +10,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #666E80;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #666E80;
+}
+
+.separator:not(:empty)::before {
+  margin-right: 2.5em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 2.5em;
+}
 
 /* The container */
 .check-container {

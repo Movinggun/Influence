@@ -13,44 +13,47 @@ import socketIOClient from "socket.io-client";
 import { setSocket, setEventsRegistered } from '../../actions/socketActions'; 
 import { loadUser } from '../../actions/authActions';
 const Dashboard = ({ auth, dashboard ,setDashboardSubPage, socket, setSocket, setEventsRegistered , loadUser}) => {
-
- 
     useEffect(() => {
-        if(!socket.registeredEvents) {
-            const newSocket = socketIOClient('/', { query: { id: auth.user._id } });
-            setSocket(newSocket);  
-            return () => newSocket.close()
 
-
-           /* setSocket(newSocket);  
-            socket.socket.emit("authEvent", auth.token)
-            socket.socket.on("authReturnEvent", data =>{
-                console.log("We get here")
-            if (data){
-                console.log("We get here2")
-                socket.socket.on("notifUpdate", data =>{
-                    loadUser();
-                });
-                try {
-                    socket.socket.on('connect_error', () => {
-                        socket.socket.disconnect();
-                        setSocket(null);
-                        setEventsRegistered(false)
-                    })
-        
-        
-                } catch (err) {
-                    console.log("An error occured with the socket: " + err)
-                }
-                    setEventsRegistered(true)
-            } else{
-                console.log("Failed to auth D:")
-                return <h1> Socket IO Failed </h1>
-            }
-            })*/
+       /* if (socket.socket != null) {
+            console.log("Killing Existing Socket")
+            socket.socket.close();
+            socket.socket.disconnect();
         }
+
+        const newSocket = socketIOClient('/', { query: { id: auth.user._id } });
+        setSocket(newSocket);  
+        return () => newSocket.close()
+*/
+
+        /* setSocket(newSocket);  
+        socket.socket.emit("authEvent", auth.token)
+        socket.socket.on("authReturnEvent", data =>{
+            console.log("We get here")
+        if (data){
+            console.log("We get here2")
+            socket.socket.on("notifUpdate", data =>{
+                loadUser();
+            });
+            try {
+                socket.socket.on('connect_error', () => {
+                    socket.socket.disconnect();
+                    setSocket(null);
+                    setEventsRegistered(false)
+                })
+    
+    
+            } catch (err) {
+                console.log("An error occured with the socket: " + err)
+            }
+                setEventsRegistered(true)
+        } else{
+            console.log("Failed to auth D:")
+            return <h1> Socket IO Failed </h1>
+        }
+        })*/
     // eslint-disable-next-line
-    }, [auth.id]);
+    }, [auth.user]);
 
     const handleChange = (event, newValue) => {
         setDashboardSubPage(newValue);

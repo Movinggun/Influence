@@ -1,10 +1,12 @@
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
 import Influencers from './components/influencers/Influencers'
+import Chat from './components/chat/Chat'
 import Landing from './components/landing/Landing';
 import Login from './components/login/Login';
 import BranchModal from './components/onboarding/BranchModal';
 import PrivateRoute from './components/routing/PrivateRoute';
+import ServiceProviders from './components/serviceProviders/ServiceProviders';
 
 import { Provider } from 'react-redux';
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -58,6 +60,8 @@ function App() {
               <Route path='/' exact component={Landing}/>
               <PrivateRoute path='/dashboard'  component={Dashboard}/>
               <PrivateRoute path='/influencers'  component={Influencers}/>
+              <PrivateRoute path='/service-providers'  component={ServiceProviders}/>
+              <PrivateRoute path='/chat'  component={Chat}/>
               <Route path='/login' component={Login} />
           </div>
       </Router>

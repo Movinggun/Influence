@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { loadUser, setNotificationStatus, deleteNotification, logout} from '../../actions/authActions';
 import { setDashboardSubPage } from '../../actions/dashboardActions'
 import { setSocket, setEventsRegistered } from '../../actions/socketActions'
-import socketIOClient from "socket.io-client";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -139,7 +139,6 @@ const Navbar = ({auth, logout, setDashboardSubPage, socket, setSocket, setNotifi
 
     let notificationsArray = auth.user.notifications;
 
-
     let readNotifications = notificationsArray.filter(m => (m.read));
     let unReadNotifications = notificationsArray.filter(m => (!m.read));
 
@@ -151,8 +150,8 @@ const Navbar = ({auth, logout, setDashboardSubPage, socket, setSocket, setNotifi
               <Typography type="items" color="inherit" style={{ flex: 1 }}>
                 <Button color="inherit" onClick={() => history.push('/dashboard') }>Dashboard</Button>
                 <Button color="inherit" onClick={() => history.push('/influencers') } >Influencers</Button>
-                <Button color="inherit">Service Providers</Button>
-                <Button color="inherit">Conversations</Button>
+                <Button color="inherit" onClick={() => history.push('/service-providers')}>Service Providers</Button>
+                <Button color="inherit" onClick={() => history.push('/chat') }>Conversations</Button>
             </Typography>
             <Box style={{marginRight: '12%'}}>
                 {auth.user !== null && !auth.loading && <>

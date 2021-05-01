@@ -29,7 +29,14 @@ io.on('connection', async (socket) => {
     const id = socket.handshake.query.id;
     console.log ("New User: " + id)
     socket.userID = socket.handshake.query.id;
+
+    socket.on('disconnect', function () {
+      console.log(socket.userID + ' disconnected!');
+  });
+
   })
+
+
 
 app.set('socketio', io);
 
