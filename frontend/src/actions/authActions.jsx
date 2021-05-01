@@ -1,6 +1,9 @@
 import axios from 'axios'
 import SetAuthToken from '../utils/setAuthToken';
-import  { SAVE_BRANCH, SET_ACCOUNT_BRANCH, REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, SET_LOADING, SET_LOGIN_MODAL, SET_SIGNUP_MODAL, SET_BRANCH_MODAL} from './types';
+import  { DELETE_ERROR, DELETE_NOTIFICATION, SAVE_BRANCH, SET_ACCOUNT_BRANCH, REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, SET_LOADING, SET_LOGIN_MODAL, SET_SIGNUP_MODAL, SET_BRANCH_MODAL, SET_NOTIFICATION_READ} from './types';
+
+
+
 
 
 // Load User
@@ -71,32 +74,76 @@ export const register = (formData) => async dispatch => {
 }
 
 
+// Set Notification Status
+export const setNotificationStatus = (status) => async dispatch => {
 
-    // Savr Branch
-    export const saveBranch = (branch) => async dispatch => {
-    
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-    
-        try {
-            const res = await axios.put('/api/users/branch', branch, config);
-    
-            dispatch({
-                type: SAVE_BRANCH,
-                payload: res.data
-            });
-    
-            loadUser()
-        } catch (err) {
-            dispatch({
-                type: AUTH_ERROR,
-                payload: err.response.data.msg
-            }); 
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
         }
     }
+
+    try {
+        console.log(status)
+        const res = await axios.put(`/api/notifications/${status._id}`, status, config);
+
+        dispatch({
+            type: SET_NOTIFICATION_READ,
+            payload: status
+        });
+
+        loadUser()
+    } catch (err) {
+        dispatch({
+            type: DELETE_ERROR,
+            payload: err.response.data.msg
+        }); 
+    }
+}
+
+// Sets the Modal State
+export const deleteNotification = (_id) => async dispatch => {   
+    try {
+        await axios.delete(`/api/notifications/${_id}`);
+        dispatch({
+            type: DELETE_NOTIFICATION,
+            payload: _id
+        });
+    } catch (err) {
+        dispatch({
+            type: DELETE_ERROR,
+            payload: err.response.data.msg
+        }); 
+    }
+}
+
+
+
+// Savr Branch
+export const saveBranch = (branch) => async dispatch => {
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try {
+        const res = await axios.put('/api/users/branch', branch, config);
+
+        dispatch({
+            type: SAVE_BRANCH,
+            payload: res.data
+        });
+
+        loadUser()
+    } catch (err) {
+        dispatch({
+            type: AUTH_ERROR,
+            payload: err.response.data.msg
+        }); 
+    }
+}
 
 
 // Sets the Modal State

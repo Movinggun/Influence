@@ -51,7 +51,11 @@ const userSchema = new mongoose.Schema({
     account_type_info: {
         type: Array,
         default: {}
-      },
+    },
+    notifications: {
+        type: Array,
+        default: {}
+    },
     date: {
         type: Date,
         required: true,

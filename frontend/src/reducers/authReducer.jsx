@@ -1,4 +1,4 @@
-import  { SAVE_BRANCH, SET_ACCOUNT_BRANCH, REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, SET_LOADING, SET_LOGIN_MODAL, SET_SIGNUP_MODAL, SET_BRANCH_MODAL, GET_AVATAR} from '../actions/types';
+import  { DELETE_ERROR, DELETE_NOTIFICATION, SET_NOTIFICATION_READ, SAVE_BRANCH, SET_ACCOUNT_BRANCH, REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, SET_LOADING, SET_LOGIN_MODAL, SET_SIGNUP_MODAL, SET_BRANCH_MODAL, GET_AVATAR} from '../actions/types';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -47,6 +47,24 @@ export default (state = initialState, action) => {
                 isAuthenticated: true,
                 loading: false
             }
+        case SET_NOTIFICATION_READ:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    notifications: state.user.notifications.map(notif => notif._id === action.payload.id ? action.payload : notif)
+                },
+                loading: false
+            }  
+        case DELETE_NOTIFICATION:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    notifications: state.user.notifications.filter(notif => notif._id !== action.payload)
+                },
+                loading: false
+            }      
         case SET_SIGNUP_MODAL:
             return {
                 ...state,
@@ -66,7 +84,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 selectedAccountBranch: action.payload
-            }        
+            }
+        case DELETE_ERROR:
+            return {
+                ...state,
+                error: action.payload
+            }            
         case AUTH_ERROR:
         case REGISTER_FAIL:
         case LOGIN_FAIL:

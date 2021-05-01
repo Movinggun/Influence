@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../layout/Navbar'
 import Box from '@material-ui/core/Box';
 import { connect } from 'react-redux';
@@ -9,16 +9,52 @@ import Tab from '@material-ui/core/Tab';
 import Profile from './Profile'
 import Certificates from './Certificates'
 import { setDashboardSubPage } from '../../actions/dashboardActions'
-
-
-const Dashboard = ({ auth, dashboard ,setDashboardSubPage }) => {
+import socketIOClient from "socket.io-client";
+import { setSocket, setEventsRegistered } from '../../actions/socketActions'; 
+import { loadUser } from '../../actions/authActions';
+const Dashboard = ({ auth, dashboard ,setDashboardSubPage, socket, setSocket, setEventsRegistered , loadUser}) => {
 
  
+    useEffect(() => {
+        if(!socket.registeredEvents) {
+            const newSocket = socketIOClient('/', { query: { id: auth.user._id } });
+            setSocket(newSocket);  
+            return () => newSocket.close()
+
+
+           /* setSocket(newSocket);  
+            socket.socket.emit("authEvent", auth.token)
+            socket.socket.on("authReturnEvent", data =>{
+                console.log("We get here")
+            if (data){
+                console.log("We get here2")
+                socket.socket.on("notifUpdate", data =>{
+                    loadUser();
+                });
+                try {
+                    socket.socket.on('connect_error', () => {
+                        socket.socket.disconnect();
+                        setSocket(null);
+                        setEventsRegistered(false)
+                    })
+        
+        
+                } catch (err) {
+                    console.log("An error occured with the socket: " + err)
+                }
+                    setEventsRegistered(true)
+            } else{
+                console.log("Failed to auth D:")
+                return <h1> Socket IO Failed </h1>
+            }
+            })*/
+        }
+    // eslint-disable-next-line
+    }, [auth.id]);
+
     const handleChange = (event, newValue) => {
         setDashboardSubPage(newValue);
     };
-
-
 
     let welcomeMessage = '';
 
@@ -33,6 +69,21 @@ const Dashboard = ({ auth, dashboard ,setDashboardSubPage }) => {
     };
 
     getWelcomeMessage()
+
+    if (socket.socket !== null) {
+        try {
+            socket.socket.on('connect_error', () => {
+                console.log("Lost Connection to the server")
+                socket.socket.disconnect();
+                setSocket(null);
+            })
+
+
+        } catch (err) {
+            console.log("An error occured with the socket: " + err)
+        }
+    }
+
 
     return (
         <div style={{backgroundColor: '#202530', height: '100vh', backgroundSize: 'cover' }}>
@@ -82,8 +133,9 @@ const Dashboard = ({ auth, dashboard ,setDashboardSubPage }) => {
 
 const mapStateToProps = (state) => ({
     auth: state.auth,
-    dashboard: state.dashboard
+    dashboard: state.dashboard,
+    socket: state.socket
 });
 
 
-export default connect(mapStateToProps, {setDashboardSubPage}) (Dashboard)
+export default connect(mapStateToProps, {setDashboardSubPage, setSocket, setEventsRegistered, loadUser}) (Dashboard)

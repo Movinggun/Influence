@@ -7,14 +7,17 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
 const Influencer = require('../models/Influencer');
+const Notification = require('../models/Notification');
 
 router.get('/', auth, async (req, res) => {
     try {
         const getUser = await User.findById(req.user.id).select('-password');
+        const notifications = await Notification.find({user: req.user.id}).select('-__v').select('-user').limit(10);
+        console.log("Notifs:" + notifications)
+        getUser['notifications'] = notifications;
         switch (getUser.account_type) {
             case "influencer":
                 const influencer = await Influencer.find({user: req.user.id}).select('-user_info').select('-__v').select('-user');
-                console.log(influencer)
                 getUser['account_type_info'] = influencer;
                 return res.json(getUser);
                 
